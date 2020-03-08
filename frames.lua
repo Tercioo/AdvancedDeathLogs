@@ -1,6 +1,11 @@
 
 do
 
+	local wipe = _G.wipe
+	local Details = _G.Details
+	local _detalhes = _G._detalhes
+
+
 	_detalhes.DeathGraphsWindowBuilder = function (DeathGraphs)
 
 		local tinsert = tinsert
@@ -84,9 +89,7 @@ do
 								self.isMoving = false
 							end
 						end)
-		
-		--f:SetBackdrop ({bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", tile = true, tileSize = 16,
-		
+
 		f:SetBackdrop (_detalhes.PluginDefaults and _detalhes.PluginDefaults.Backdrop or {bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", tile = true, tileSize = 16,
 		edgeFile = [[Interface\Buttons\WHITE8X8]], edgeSize = 1,
 		insets = {left = 1, right = 1, top = 1, bottom = 1}})
@@ -101,10 +104,6 @@ do
 		f.bg1:SetVertTile (true)
 		f.bg1:SetHorizTile (true)
 		f.bg1:SetAllPoints()
-
-		--local title = framework:NewLabel (f, nil, "$parentTitle", nil, "Advanced Death Logs", nil, 20, "yellow")
-		--title:SetPoint (12, -13)
-		--DeathGraphs:SetFontOutline (title, true)
 
 		local bottom_texture = framework:NewImage (f, nil, 922, 25, "background", nil, nil, "$parentBottomTexture")
 		bottom_texture:SetColorTexture (0, 0, 0, .6)
@@ -657,7 +656,7 @@ do
 		segments_scroll.buttons = {}
 		
 		local segment_button_on_click = function (self, button, param1, param2)
-			--> mostra o gráfico para este segmento
+			--> mostra o grï¿½fico para este segmento
 			if (debugmode) then
 				print ("on click segment:", self.MyObject.death_table, self.MyObject.index, DeathGraphs.db.last_boss)
 			end
@@ -1919,12 +1918,6 @@ do
 		
 		overall_bg:SetPoint ("topleft", gframe, "bottomleft", 0, -30)
 		overall_bg:SetSize (464, 148)
-		--overall_bg:SetBackdrop ({bgFile = "Interface\\AddOns\\Details\\images\\background", tile = true, tileSize = 16,
-		--edgeFile=[[Interface\AddOns\Details\images\border_2]], edgeSize=16,
-		--insets = {left = 0, right = 0, top = 0, bottom = 0}})
-		--overall_bg:SetBackdropBorderColor (.8, .8, .8, 1)
-		--overall_bg:SetBackdropColor (.1, .1, .1, .2)		
-		
 		framework:CreateLabel (overall_bg, "Overall Damage Taken Before All Deaths:", nil, nil, "GameFontNormal", "overall")
 		overall_bg.overall:SetPoint ("topleft", gframe, "bottomleft", 5, -38)
 		
@@ -1968,8 +1961,7 @@ do
 			
 			frame:SetPoint ("topleft", overall_bg.overall.widget, "bottomleft", x, y)
 			y = y - 20
-			
-			--if (y < -125) then
+
 			if (y < -150) then
 				x = x + 232
 				y = -7
@@ -1977,7 +1969,6 @@ do
 		end
 		
 		--> report overall
-
 		local report_overall_func = function()
 			local boss = DeathGraphs.db.last_boss
 			if (not boss) then
@@ -2063,9 +2054,6 @@ do
 			end
 		end
 		
-		--gframe:SetScript ("OnShow", function() gframe.timeline:Show() end)
-		--gframe:SetScript ("OnHide", function() gframe.timeline:Hide() end)
-		
 		gframe:Reset()
 		gframe:HideGrid()		
 		DeathGraphs:ClearOverall()
@@ -2113,15 +2101,11 @@ do
 	local playerListFrame = CreateFrame ("frame", "DeathGraphsCurrentFrameDeathsPlayerList", currentFrame)
 	playerListFrame:SetPoint ("topleft", currentFrame, "topleft", -9, -45)
 	playerListFrame:SetSize (170, 400)
-	--playerListFrame:SetBackdrop ({bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", tile = true, tileSize = 16})
-	--playerListFrame:SetBackdropColor (0, 0, 0, 0) --full transparent
 	
 	--create the panel to show the death timeline
 	local deathPanel = CreateFrame ("frame", "DeathGraphsCurrentFrameDeathsDeathTimeline", currentFrame)
 	deathPanel:SetPoint ("topleft", playerListFrame, "topright", 2, 0)
 	deathPanel:SetSize (750, 400)
-	--deathPanel:SetBackdrop ({bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", tile = true, tileSize = 16})
-	--deathPanel:SetBackdropColor (0, 0, 0, 0) --full transparent
 	
 	--colunms:
 	local deathColumns = {}
@@ -2170,7 +2154,6 @@ do
 		column_frame.healthBarBackground = framework:CreateImage (column_frame, nil, 150, 12, "artwork")
 		column_frame.healthBarBackground:SetColorTexture (0, 0, 0, 0.5)
 		column_frame.healthBar = framework:CreateImage (column_frame, nil, 150, 12, "overlay")
-		--column_frame.healthBar:SetColorTexture (0.6, 0, 0, 0.8)
 		column_frame.healthBar:SetColorTexture (.8, .8, .8, 0.7)
 		
 		--> set points, height and script
