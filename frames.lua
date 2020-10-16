@@ -123,7 +123,7 @@ do
 			f:SetBackdropBorderColor (0, 0, 0, 1)
 			
 		--title bar
-			local titlebar = CreateFrame ("frame", nil, f)
+			local titlebar = CreateFrame ("frame", nil, f, "BackdropTemplate")
 			titlebar:SetPoint ("topleft", f, "topleft", 2, -3)
 			titlebar:SetPoint ("topright", f, "topright", -2, -3)
 			titlebar:SetHeight (20)
@@ -245,7 +245,7 @@ do
 			end
 			
 			--> align the menus at the same point as the current deaths dropdown and timeline dropdowns
-			local enduranceFrameMenuAnchor = CreateFrame ("frame", "DeathGraphsEnduranceFrameMenuAnchor", f)
+			local enduranceFrameMenuAnchor = CreateFrame ("frame", "DeathGraphsEnduranceFrameMenuAnchor", f, "BackdropTemplate")
 			enduranceFrameMenuAnchor:SetPoint ("topleft", 10, -50)
 			enduranceFrameMenuAnchor:SetSize (1, 1)
 			
@@ -492,7 +492,7 @@ do
 			end
 		end
 		
-		local player_overall_anchor = CreateFrame ("frame", "DeathGraphsPlayerOverallAnchor", f)
+		local player_overall_anchor = CreateFrame ("frame", "DeathGraphsPlayerOverallAnchor", f, "BackdropTemplate")
 		player_overall_anchor:SetPoint ("topleft", enduranceFrameMenuAnchor, "topleft", 170, -45)
 		player_overall_anchor:SetSize (1, 1)
 		
@@ -508,13 +508,13 @@ do
 		DeathGraphs.selected_texture_segment2:SetBlendMode ("ADD")
 		DeathGraphs.selected_texture_segment2:SetAllPoints (DeathGraphs.selected_texture_segment.widget)
 		
-		local player_scroll = CreateFrame ("scrollframe", "DeathGraphsPlayerScroll", f, "FauxScrollFrameTemplate")
+		local player_scroll = CreateFrame ("scrollframe", "DeathGraphsPlayerScroll", f, "FauxScrollFrameTemplate, BackdropTemplate")
 		player_scroll:SetScript ("OnVerticalScroll", function (self, offset) FauxScrollFrame_OnVerticalScroll (self, offset, 20, player_refresh) end)
 		player_scroll:SetPoint ("topleft", player_overall_anchor, "topleft", 0, 0)
 		player_scroll:SetSize (100, 360)
 		player_scroll:SetFrameLevel (f:GetFrameLevel()+2)
 		
-		local player_bg_frame = CreateFrame ("frame", "DeathGraphsPlayerScrollBgFrame", f)
+		local player_bg_frame = CreateFrame ("frame", "DeathGraphsPlayerScrollBgFrame", f, "BackdropTemplate")
 		player_bg_frame:SetPoint ("topleft", player_scroll, "topleft")
 		player_bg_frame:SetPoint ("bottomright", player_scroll, "bottomright", -2, 0)
 		player_bg_frame:SetFrameLevel (f:GetFrameLevel()+1)
@@ -636,13 +636,13 @@ do
 			end
 		end
 		
-		local segments_scroll = CreateFrame ("scrollframe", "DeathGraphsSegmentScroll", f, "FauxScrollFrameTemplate")
+		local segments_scroll = CreateFrame ("scrollframe", "DeathGraphsSegmentScroll", f, "FauxScrollFrameTemplate, BackdropTemplate")
 		segments_scroll:SetScript ("OnVerticalScroll", function (self, offset) FauxScrollFrame_OnVerticalScroll (self, offset, 20, segment_refresh) end)
 		segments_scroll:SetPoint ("topleft", enduranceFrameMenuAnchor, "topleft", 320, -45)
 		segments_scroll:SetSize (100, 360)
 		segments_scroll:SetFrameLevel (f:GetFrameLevel()+2)
 		
-		local segments_bg_frame = CreateFrame ("frame", nil, f)
+		local segments_bg_frame = CreateFrame ("frame", nil, f, "BackdropTemplate")
 		segments_bg_frame:SetPoint ("topleft", segments_scroll, "topleft")
 		segments_bg_frame:SetPoint ("bottomright", segments_scroll, "bottomright", -5, 0)
 		segments_bg_frame:SetFrameLevel (f:GetFrameLevel()+1)
@@ -708,7 +708,7 @@ do
 		end
 		
 	--> ~endurance box
-		local endurance_frame = CreateFrame ("frame", "DeathGraphsEnduranceFrame", f)
+		local endurance_frame = CreateFrame ("frame", "DeathGraphsEnduranceFrame", f, "BackdropTemplate")
 		endurance_frame:SetFrameLevel (f:GetFrameLevel()+5)
 		endurance_frame:SetPoint ("topleft", enduranceFrameMenuAnchor, "topleft", 170, -45)
 		
@@ -1610,7 +1610,7 @@ do
 		local GetSpellInfo = _detalhes.getspellinfo
 		local flag_logmouseover = false
 	
-		local gframe = CreateFrame ("frame", nil, f)
+		local gframe = CreateFrame ("frame", nil, f, "BackdropTemplate")
 		gframe:SetSize (475, 160)
 		gframe:SetPoint ("topleft", f, "topleft", 449, -95)
 		gframe.CustomLine = [[Interface\AddOns\Details\Libs\LibGraph-2.0\line]]
@@ -1694,7 +1694,7 @@ do
 		for i = 1, 16 do
 			linhas [i] = g:DrawLine (gframe, 400, 500, 600, 700, 20, {1, 1, 1, 1}, "artwork")
 			
-			local f = CreateFrame ("frame", nil, gframe)
+			local f = CreateFrame ("frame", nil, gframe, "BackdropTemplate")
 			f:SetPoint ("left", gframe, "left", (i-1)*29, 0)
 			f:SetSize (29, 160)
 			gradeframes [i] = f
@@ -1714,7 +1714,7 @@ do
 			local b = f:CreateTexture (nil, "overlay")
 			b:SetTexture ([[Interface\COMMON\Indicator-Yellow]])
 			b:SetSize (16, 16)
-			local anchor = CreateFrame ("frame", nil, f)
+			local anchor = CreateFrame ("frame", nil, f, "BackdropTemplate")
 			anchor:SetAllPoints (b)
 			b.tooltip_anchor = anchor
 			gballs [i] = b
@@ -1759,7 +1759,7 @@ do
 		end
 		
 		--> timeline
-		local timeline_bg = CreateFrame ("frame", nil, gframe)
+		local timeline_bg = CreateFrame ("frame", nil, gframe, "BackdropTemplate")
 		gframe.timeline = timeline_bg
 		timeline_bg:SetPoint ("topleft", gframe, "bottomleft", 0, -1)
 		timeline_bg:SetPoint ("topright", gframe, "bottomright", -11, -1)
@@ -1913,7 +1913,7 @@ do
 		local overall = {}
 		local amount_of_overall_blocks = 16
 		
-		local overall_bg = CreateFrame ("frame", "DeathGraphsOverallDamageBackground", f)
+		local overall_bg = CreateFrame ("frame", "DeathGraphsOverallDamageBackground", f, "BackdropTemplate")
 		DeathGraphs.overall_bg = overall_bg
 		
 		overall_bg:SetPoint ("topleft", gframe, "bottomleft", 0, -30)
@@ -1940,7 +1940,7 @@ do
 		
 		local x, y = 0, -7
 		for i = 1, amount_of_overall_blocks do
-			local frame = CreateFrame ("frame", nil, overall_bg)
+			local frame = CreateFrame ("frame", nil, overall_bg, "BackdropTemplate")
 			frame:SetSize (220, 19)
 			
 			local icon = framework:NewImage (frame, "", 18, 18)
@@ -2071,7 +2071,7 @@ do
 	local BUTTON_BACKGROUND_COLOR = {.2, .2, .2, .75}
 	local BUTTON_BACKGROUND_COLORHIGHLIGHT = {.5, .5, .5, .8}	
 	
-	local currentFrame = CreateFrame ("frame", "DeathGraphsCurrentFrameDeaths", f)
+	local currentFrame = CreateFrame ("frame", "DeathGraphsCurrentFrameDeaths", f, "BackdropTemplate")
 	currentFrame:SetPoint ("topleft", 10, -50)
 	currentFrame:SetSize (800, 400)
 	
@@ -2098,12 +2098,12 @@ do
 	segment_dropdown:SetPoint ("topleft", segment_label, "bottomleft", 0, -5)
 	
 	--create the player frame to host buttons
-	local playerListFrame = CreateFrame ("frame", "DeathGraphsCurrentFrameDeathsPlayerList", currentFrame)
+	local playerListFrame = CreateFrame ("frame", "DeathGraphsCurrentFrameDeathsPlayerList", currentFrame, "BackdropTemplate")
 	playerListFrame:SetPoint ("topleft", currentFrame, "topleft", -9, -45)
 	playerListFrame:SetSize (170, 400)
 	
 	--create the panel to show the death timeline
-	local deathPanel = CreateFrame ("frame", "DeathGraphsCurrentFrameDeathsDeathTimeline", currentFrame)
+	local deathPanel = CreateFrame ("frame", "DeathGraphsCurrentFrameDeathsDeathTimeline", currentFrame, "BackdropTemplate")
 	deathPanel:SetPoint ("topleft", playerListFrame, "topright", 2, 0)
 	deathPanel:SetSize (750, 400)
 	
@@ -2136,7 +2136,7 @@ do
 	
 	--> create the lines for the death log
 	for i = 1, CONST_MAX_DEATH_EVENTS do
-		local column_frame = CreateFrame ("frame", nil, deathPanel)
+		local column_frame = CreateFrame ("frame", nil, deathPanel, "BackdropTemplate")
 		--time before death
 		column_frame.hitTime = framework:CreateLabel (column_frame, "-10s", nil, "white", "GameFontHighlightSmall")
 		
@@ -2204,7 +2204,7 @@ do
 
 	--> create the summary blocks
 	for i = 1, MAX_SUMMARY_SPELLS do
-		local summary_frame = CreateFrame ("frame", nil, deathPanel)
+		local summary_frame = CreateFrame ("frame", nil, deathPanel, "BackdropTemplate")
 		
 		summary_frame:SetBackdrop ({bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", tile = true, tileSize = 16})
 		summary_frame:SetBackdropColor (unpack (BUTTON_BACKGROUND_COLOR))
@@ -2582,7 +2582,7 @@ do
 	local CONST_TIMELINE_WIGHT = 905
 	local CONST_TIMELINE_HEIGHT = 505
 	
-	local deathAbilityGraph = CreateFrame ("frame", "DeathGraphsPlayerGraphicDeaths", f)
+	local deathAbilityGraph = CreateFrame ("frame", "DeathGraphsPlayerGraphicDeaths", f, "BackdropTemplate")
 	deathAbilityGraph:SetPoint ("topleft", 10, -50)
 	deathAbilityGraph:SetSize (CONST_TIMELINE_WIGHT, CONST_TIMELINE_HEIGHT)
 	
@@ -2674,7 +2674,7 @@ do
 		end
 		
 		--> graph frame:
-		local graphFrame = CreateFrame ("frame", "DeathGraphsPlayerGraphicDeaths_graphFrame", deathAbilityGraph)
+		local graphFrame = CreateFrame ("frame", "DeathGraphsPlayerGraphicDeaths_graphFrame", deathAbilityGraph, "BackdropTemplate")
 		
 		graphFrame.Width = 738
 		graphFrame.Height = 516
@@ -2691,11 +2691,11 @@ do
 		graphFrame:SetBackdropColor (0, 0, 0, 0)
 		
 		--> death lines
-		local deathLinesFrame = CreateFrame ("frame", "DeathGraphsPlayerGraphicDeaths_deathLinesFrame", graphFrame)
+		local deathLinesFrame = CreateFrame ("frame", "DeathGraphsPlayerGraphicDeaths_deathLinesFrame", graphFrame, "BackdropTemplate")
 		deathLinesFrame:SetFrameLevel (graphFrame:GetFrameLevel()+4)
 		
 		--> spells lines
-		local spellLinesFrame = CreateFrame ("frame", "DeathGraphsPlayerGraphicDeaths_spellLinesFrame", graphFrame)
+		local spellLinesFrame = CreateFrame ("frame", "DeathGraphsPlayerGraphicDeaths_spellLinesFrame", graphFrame, "BackdropTemplate")
 		spellLinesFrame:SetPoint ("topright", graphFrame, "topleft")
 		spellLinesFrame:SetPoint ("bottomright", graphFrame, "bottomleft")
 		spellLinesFrame:SetWidth (160)
@@ -2803,7 +2803,7 @@ do
 		
 		--> create the spell labels on the left side of the frame
 		for i = 1, graphFrame.MaxSpellLines do
-			local line = CreateFrame ("frame", nil, spellLinesFrame)
+			local line = CreateFrame ("frame", nil, spellLinesFrame, "BackdropTemplate")
 			
 			line:SetBackdrop ({bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", tile = true, tileSize = 16})
 			line:SetBackdropColor (unpack (graphFrame.SpellLineBackground))
@@ -2832,13 +2832,13 @@ do
 		graphFrame.DeathLines = {}
 
 		--> time line
-		local timeLine = CreateFrame ("frame", nil, graphFrame)
+		local timeLine = CreateFrame ("frame", nil, graphFrame, "BackdropTemplate")
 		timeLine:SetPoint ("bottomleft", graphFrame, "bottomleft", 0, 0)
 		timeLine:SetPoint ("bottomright", graphFrame, "bottomright", 6, 0)
 		timeLine:SetBackdrop ({bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", tile = true, tileSize = 16})
 		timeLine:SetBackdropColor (0, 0, 0, .4)
 		timeLine:SetHeight (20)
-		local timeLineExtension = CreateFrame ("frame", nil, graphFrame)
+		local timeLineExtension = CreateFrame ("frame", nil, graphFrame, "BackdropTemplate")
 		timeLineExtension:SetPoint ("right", timeLine, "left", 0, 0)
 		timeLineExtension:SetWidth (178)
 		timeLineExtension:SetBackdrop ({bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", tile = true, tileSize = 16})

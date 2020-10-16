@@ -174,7 +174,7 @@ local function CreatePluginFunctions()
 				DeathGraphs.db.first_run = true
 			
 				--> first run
-				local welcome = CreateFrame ("frame", nil, DeathGraphsFrame)
+				local welcome = CreateFrame ("frame", nil, DeathGraphsFrame, "BackdropTemplate")
 				welcome:SetFrameStrata ("TOOLTIP")
 				welcome:SetPoint ("center", DeathGraphsFrame, "center")
 				welcome:SetSize (400, 300)
