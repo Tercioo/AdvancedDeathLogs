@@ -4,6 +4,8 @@
 ## RequiredDeps: Details
 ## OptionalDeps: Ace3
 ## SavedVariablesPerCharacter: DeathGraphsDBDeaths, DeathGraphsDBEndurance, DeathGraphsDBCurrent, DeathGraphsDBGraph
+## X-Curse-Project-ID: 75162
+## X-Wago-ID: WYK9QaKL
 
 #@no-lib-strip@
 embeds.xml
