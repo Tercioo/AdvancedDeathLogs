@@ -1,0 +1,74 @@
+{
+	"files": [
+		{
+			"path": "Details_DeathGraphs.lua",
+			"bookmarks": [
+				{
+					"line": 843,
+					"column": 21,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "frames_timeline.lua",
+			"bookmarks": [
+				{
+					"line": 224,
+					"column": 44,
+					"label": ""
+				},
+				{
+					"line": 265,
+					"column": 47,
+					"label": ""
+				},
+				{
+					"line": 598,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 646,
+					"column": 4,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "frames_endurance.lua",
+			"bookmarks": [
+				{
+					"line": 87,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 596,
+					"column": 12,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "frames_encounterdeaths.lua",
+			"bookmarks": [
+				{
+					"line": 464,
+					"column": 0,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "frames.lua",
+			"bookmarks": [
+				{
+					"line": 172,
+					"column": 110,
+					"label": ""
+				}
+			]
+		}
+	]
+}
