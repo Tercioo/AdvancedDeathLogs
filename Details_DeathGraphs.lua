@@ -465,8 +465,6 @@ function adlObject:CombatFinished(combatObject)
 	---@end-debug
 
 	if (not bossInfoTable) then
-		print("no boss info, retuning...")
-		print(3)
 		return
 	end
 
