@@ -627,7 +627,6 @@ function adlObject:CombatFinished(combatObject)
 
 					--everything is on max
 					if (deathIndex > maxEndurance and deathIndex > maxTimelineDeaths and deathIndex > maxDeathsForCurrent) then
-						print("breaking at index:", deathIndex)
 						break
 					end
 				end --loop
@@ -657,8 +656,6 @@ function adlObject:CombatFinished(combatObject)
 		end
 
 		adlObject:CanShowIcon()
-	else
-		print(4)
 	end
 end
 

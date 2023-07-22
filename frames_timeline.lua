@@ -494,8 +494,6 @@ function advancedDeathLogs.mainFrame.BuildTimelineFrames() --called at the end o
             end
         end
 
-        --print("startTime, endTime:", startTime, endTime)
-
         --startTimeDiff is the size of the space added before startTime, saving this value to be able to get the line of the death second.
         local startTimeDiff
         if (startTime > 20) then
