@@ -58,14 +58,16 @@ function advancedDeathLogs.RegisterDetailsHook()
             local spellName, _, spellIcon = Details.GetSpellInfo(spellId)
             spellName = spellName:sub(1, 24)
 
-            local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0")
-            local timeLeft, charges, timeOffset, duration, updateTime = openRaidLib.GetCooldownTimeFromCooldownInfo(cooldownInfo)
-            if (timeLeft == 0) then
-                gameCooltip:AddLine(spellName, "|cFF11FF11good|r", 2, "white")
-                gameCooltip:AddIcon(spellIcon, 2, 1, 16, 16, .1, .9, .1, .9)
-            else
-                gameCooltip:AddLine(spellName, "-" .. detailsFramework:IntegerToTimer(timeLeft), 2, "white")
-                gameCooltip:AddIcon(spellIcon, 2, 1, 16, 16, .1, .9, .1, .9)
+            local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0", true)
+            if (openRaidLib) then
+                local timeLeft, charges, timeOffset, duration, updateTime = openRaidLib.GetCooldownTimeFromCooldownInfo(cooldownInfo)
+                if (timeLeft == 0) then
+                    gameCooltip:AddLine(spellName, "|cFF11FF11good|r", 2, "white")
+                    gameCooltip:AddIcon(spellIcon, 2, 1, 16, 16, .1, .9, .1, .9)
+                else
+                    gameCooltip:AddLine(spellName, "-" .. detailsFramework:IntegerToTimer(timeLeft), 2, "white")
+                    gameCooltip:AddIcon(spellIcon, 2, 1, 16, 16, .1, .9, .1, .9)
+                end
             end
         end
 
@@ -84,7 +86,7 @@ function advancedDeathLogs.RegisterDetailsHook()
 
     function cdTracker.Cooldowns.RegisterCooldownUsage()
         cdTracker.Cooldowns.Usage = {} --will store [unitName] = {spellId = time, spellId = time, spellId = time}
-        local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0")
+        local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0", true, true)
         if (openRaidLib) then
             function cdTracker.Cooldowns.OnReceiveSingleCooldownUpdate(unitId, spellId, cooldownInfo, unitCooldows, allUnitsCooldowns)
                 local unitName = GetUnitName(unitId, true)
@@ -125,7 +127,7 @@ function advancedDeathLogs.RegisterDetailsHook()
     local onDeathEvent = function(_, token, time, sourceSerial, sourceName, sourceFlags, targetSerial, targetName, targetFlags, deathTable, lastCooldown, combatElapsedTime, maxHealth)
         local cooldownUsage = {}
 
-        local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0")
+        local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0", true)
         if (openRaidLib) then
             local unitCooldowns = openRaidLib.GetUnitCooldowns(targetName, "defensive-personal,defensive-raid,itemheal")
             cooldownUsage = cdTracker.Cooldowns.Usage[targetName] or {}
@@ -148,7 +150,7 @@ function advancedDeathLogs.RegisterDetailsHook()
     local onCooldownEvent = function(_, token, time, sourceSerial, sourceName, sourceFlags, targetSerial, targetName, targetFlags, spellId, spellName)
         if (sourceSerial and targetSerial) then
             if (sourceName and targetName) then
-                local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0")
+                local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0", true)
                 if (openRaidLib) then
                     local cooldownData = LIB_OPEN_RAID_COOLDOWNS_INFO[spellId]
                     if (cooldownData and cooldownData.type == 3) then
