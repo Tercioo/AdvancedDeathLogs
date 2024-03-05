@@ -6,6 +6,7 @@
 ## SavedVariablesPerCharacter: AdvancedDeathLogsDB, DeathGraphsDBEndurance
 ## X-Curse-Project-ID: 75162
 ## X-Wago-ID: WYK9QaKL
+## IconTexture: Interface\AddOns\Details\images\minimap
 
 locales\enUS.lua
 locales\deDE.lua
