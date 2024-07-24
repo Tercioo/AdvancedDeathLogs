@@ -45,6 +45,17 @@ local CONST_DBTYPE_ENDURANCE = "endurance"
 advancedDeathLogs.debugMode = false
 advancedDeathLogs.debugEncounter = false
 
+local GetSpellInfo = GetSpellInfo or C_Spell.GetSpellInfo
+
+if (detailsFramework.IsWarWow()) then
+    GetSpellInfo = function(...)
+        local result = C_Spell.GetSpellInfo(...)
+        if result then
+            return result.name, 1, result.iconID
+        end
+    end
+end
+
 adlObject:SetPluginDescription(Loc["STRING_PLUGIN_DESC"])
 
 local cleuEventFrame = CreateFrame("frame")

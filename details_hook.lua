@@ -6,6 +6,13 @@ local _
 local GameCooltip = GameCooltip
 local unpack = unpack
 
+local GetSpellInfo = GetSpellInfo or function(...)
+    local result = C_Spell.GetSpellInfo(...)
+    if result then
+        return result.name, 1, result.iconID
+    end
+end
+
 function advancedDeathLogs.RegisterDetailsHook()
     hooksecurefunc(Details, "ShowDeathTooltipFunction", function(instance, lineFrame, combatObject, deathTable)
         --in cases where the deathTable is from a copy, e.g. Overall Data, the cooldown_usage might not be available
@@ -68,6 +75,8 @@ function advancedDeathLogs.RegisterDetailsHook()
                 local spellId, amountOfDamage, source = unpack(causeOfDeath[i] or {})
 
                 local spellName, spellRank, spellIcon, castTime, minRange, maxRange = GetSpellInfo(spellId)
+
+                local GetSpellDescription = GetSpellDescription or C_Spell and C_Spell.GetSpellDescription
                 local spellDescription = GetSpellDescription(spellId)
 
                 if (spellDescription == "" and spellId ~= 149356) then
