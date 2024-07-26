@@ -76,7 +76,7 @@ function advancedDeathLogs.RegisterDetailsHook()
 
                 local spellName, spellRank, spellIcon, castTime, minRange, maxRange = GetSpellInfo(spellId)
 
-                local GetSpellDescription = GetSpellDescription or C_Spell and C_Spell.GetSpellDescription
+                local GetSpellDescription = C_Spell and C_Spell.GetSpellDescription or GetSpellDescription
                 local spellDescription = GetSpellDescription(spellId)
 
                 if (spellDescription == "" and spellId ~= 149356) then
@@ -117,7 +117,6 @@ function advancedDeathLogs.RegisterDetailsHook()
 
         gameCooltip:AddLine("", "", 2)
         gameCooltip:AddIcon("", 2, 1)
-        
 
         gameCooltip:AddLine("Cooldown Received:", "", 2, "yellow", "white", 14)
         gameCooltip:AddIcon("", 2, 1, 2, 2, .1, .9, .1, .9)
