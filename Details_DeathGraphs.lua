@@ -11,6 +11,8 @@ adlObject.version_string = "v3.8"
 
 advancedDeathLogs.PluginAbsoluteName = "DETAILS_PLUGIN_DEATH_GRAPHICS"
 
+local GetSpellDescription = C_Spell and C_Spell.GetSpellDescription or GetSpellDescription
+
 ---@alias ehash string
 
 local GetNumGroupMembers = GetNumGroupMembers
